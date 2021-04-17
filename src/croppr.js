@@ -39,9 +39,10 @@ export default class Croppr extends CropprCore {
   /**
    * Changes the image src.
    * @param {String} src
+   * @param {Function} callback
    */
-  setImage(src) {
-    return super.setImage(src);
+  setImage(src ,callback) {
+    return super.setImage(src ,callback);
   }
 
   /**

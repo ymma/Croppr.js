@@ -150,11 +150,12 @@ export default class CropprCore {
    * Changes the image src.
    * @param {String} src
    */
-  setImage(src) {
+  setImage(src ,callback) {
     // Add onload listener to reinitialize box
     this.imageEl.onload = () => {
       this.box = this.initializeBox(this.options);
       this.redraw();
+      if(callback !== null) callback();
     }
 
     // Change image source

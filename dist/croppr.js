@@ -563,8 +563,7 @@ var CropprCore = function () {
     this._restore = {
       parent: element.parentNode,
       element: element
-    };
-    if (!deferred) {
+    };if (!deferred) {
       if (element.width === 0 || element.height === 0) {
         element.onload = function () {
           _this.initialize(element);
@@ -630,11 +629,12 @@ var CropprCore = function () {
      */
   }, {
     key: 'setImage',
-    value: function setImage(src) {
+    value: function setImage(src, callback) {
       var _this2 = this;
       this.imageEl.onload = function () {
         _this2.box = _this2.initializeBox(_this2.options);
         _this2.redraw();
+        if (callback !== null) callback();
       };
       this.imageEl.src = src;
       this.imageClippedEl.src = src;
@@ -787,8 +787,8 @@ var CropprCore = function () {
           _box$getAbsolutePoint2 = slicedToArray(_box$getAbsolutePoint, 2),
           originX = _box$getAbsolutePoint2[0],
           originY = _box$getAbsolutePoint2[1];
-      this.activeHandle = { handle: handle, originPoint: originPoint, originX: originX, originY: originY };
-      if (this.options.onCropStart !== null) {
+      this.activeHandle = { handle: handle, originPoint: originPoint, originX: originX, originY: originY
+      };if (this.options.onCropStart !== null) {
         this.options.onCropStart(this.getValue());
       }
     }
@@ -887,8 +887,7 @@ var CropprCore = function () {
       this.currentMove = {
         offsetX: mouseX - this.box.x1,
         offsetY: mouseY - this.box.y1
-      };
-      if (this.options.onCropStart !== null) {
+      };if (this.options.onCropStart !== null) {
         this.options.onCropStart(this.getValue());
       }
     }
@@ -982,8 +981,7 @@ var CropprCore = function () {
         onCropStart: null,
         onCropMove: null,
         onCropEnd: null
-      };
-      var aspectRatio = null;
+      };var aspectRatio = null;
       if (opts.aspectRatio !== undefined) {
         if (typeof opts.aspectRatio === 'number') {
           aspectRatio = opts.aspectRatio;
@@ -1109,11 +1107,12 @@ var Croppr$1 = function (_CropprCore) {
     /**
      * Changes the image src.
      * @param {String} src
+     * @param {Function} callback
      */
   }, {
     key: 'setImage',
-    value: function setImage(src) {
-      return get(Croppr.prototype.__proto__ || Object.getPrototypeOf(Croppr.prototype), 'setImage', this).call(this, src);
+    value: function setImage(src, callback) {
+      return get(Croppr.prototype.__proto__ || Object.getPrototypeOf(Croppr.prototype), 'setImage', this).call(this, src, callback);
     }
   }, {
     key: 'destroy',
